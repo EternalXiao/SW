@@ -2,7 +2,7 @@
 public class Student {
 	private String registrationNumber;
 	private int[] marks = new int[14];
-	private static final int[] WEIGHT = {2,2,2,2,1,1,1,1,2,2,1,3,70};
+	private static final int[] WEIGHT = {2,2,2,2,1,1,1,1,2,2,1,3,10,70};
 	
 	public Student(String registrationNumber, int[] marks) {
 		this.registrationNumber = registrationNumber;
@@ -31,20 +31,31 @@ public class Student {
 	
 	public double totalMark() {
 		double overallMark = 0;
-		int count = 0;
+		int totalWeight = 0;
 		for (int i = 0; i < marks.length; i++) {
 			if (marks[i]!=-1) {
 				overallMark += marks[i]*WEIGHT[i]/100.0;
+				totalWeight += WEIGHT[i];
 			}
 		}
-		return Math.round(overallMark);
+		if (totalWeight < 50) {
+			return -1;
+		}
+		else{
+			return Math.round(overallMark/(totalWeight/100.0)*10)/10.0;
+		}
 	}
 	/*public String toString() {
 		return 
 	}*/
 	
 	public boolean passed() {
-		return totalMark() >= 50;
+		if (totalMark() == -1) {
+			throw new IllegalArgumentException();
+		}
+		else{
+			return totalMark() >= 50;
+		}
 	}
 	
 	public static void main(String[] args) {
@@ -53,5 +64,8 @@ public class Student {
 		Student sam = new Student("1",samsMarks);
 		Student billy = new Student("2",billysMarks);
 		System.out.println(sam.totalMark());
+		System.out.println(billy.totalMark());
+		System.out.println(sam.passed());
+		System.out.println(billy.passed());
 	}
 }
