@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Scanner;
 
 public class PPMImage {
 	private int width;
@@ -9,19 +10,20 @@ public class PPMImage {
 	
 	public PPMImage(String filename) {
 		try {
-			BufferedReader in = new BufferedReader(new FileReader(filename));
-			this.typeOfFile = in.readLine();
-			this.width = in.read();
-			this.height = in.read();
-			this.maxShade = in.read();
+			Scanner in = new Scanner(new File(filename));
+			this.typeOfFile = in.nextLine();
+			this.width = in.nextInt();
+			this.height = in.nextInt();
+			this.maxShade = in.nextInt();
 			pixels = new short[height][width][3];
 			for (int i = 0; i < height; i++) {
 				for (int j = 0; j < width; j++) {
 					for (int k = 0; k < 3; k++) {
-						pixels[i][j][k] = (short) in.read();
+						pixels[i][j][k] = (short) in.nextInt();
 					}
 				}
 			}
+			in.close();
 		}
 		catch (IOException e) {
 			System.out.println("Input file not found.");
@@ -80,13 +82,14 @@ public class PPMImage {
 			try{
 				BufferedWriter out = new BufferedWriter(new FileWriter(filename));
 				out.write("P2\n");
-				out.write(getWidth()+" "+getHeight());
+				out.write(getWidth()+" "+getHeight()+"\n");
 				out.write(getMaxShade()+"\n");
 				for (int i = 0; i < getHeight(); i++) {
 					for (int j = 0; j < getWidth(); j++) {
 						out.write(grey[i][j]+"\n");
 					}
 				}
+				out.close();
 			}
 			catch (IOException e) {
 				System.out.println("Output file not found.");
@@ -96,6 +99,9 @@ public class PPMImage {
 	}
 	
 	public static void main(String[] args) {
-		
+		PPMImage c = new PPMImage("ComputerScienceBig.ppm");
+		c.makeGrey("ComputerScienceBig.pgm");
+		short[][][] d = c.getPixels();
+		System.out.println(c.getTypeOfFile()+" "+c.getHeight()+" "+c.getWidth()+" "+d[0][0][0]);
 	}
 }
