@@ -10,8 +10,6 @@
  * </pre>
  */
 
-
-
 import java.io.*;
 import java.util.Scanner;
 
@@ -136,10 +134,14 @@ public class PPMImage {
 	 */
 	public short[][] makeGrey(String filename){
 		short[][] grey = new short[getHeight()][getWidth()];
+		int pgmMaxShade = 0;
 		for (int i = 0; i < getHeight(); i++) {
 			for (int j = 0; j < getWidth(); j++) {
 				//compute the corresponding grey value which is the rounded value of the three colour
 				grey[i][j] = (short)Math.round((getPixels()[i][j][0]+getPixels()[i][j][1]+getPixels()[i][j][2])/3.0);
+				if (grey[i][j] > pgmMaxShade) {
+					pgmMaxShade = grey[i][j];
+				}
 			}
 		}
 		if (!filename.equals("")) { 
@@ -147,7 +149,7 @@ public class PPMImage {
 				BufferedWriter out = new BufferedWriter(new FileWriter(filename));
 				out.write("P2\n");
 				out.write(getWidth()+" "+getHeight()+"\n");
-				out.write(getMaxShade()+"\n");
+				out.write(pgmMaxShade+"\n");
 				for (int i = 0; i < getHeight(); i++) {
 					for (int j = 0; j < getWidth(); j++) {
 						out.write(grey[i][j]+"\n");
