@@ -144,7 +144,7 @@ public class PPMImage {
 				}
 			}
 		}
-		if (!filename.equals("")) { 
+		if (filename != null) { 
 			try{
 				BufferedWriter out = new BufferedWriter(new FileWriter(filename));
 				out.write("P2\n");
