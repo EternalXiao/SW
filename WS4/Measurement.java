@@ -1,12 +1,16 @@
 /** 
- *  The class firstly simulates a measurement performed by an
- *  instrument and that can take on two different values, 1 and 2. The
- *  instrument may also malfunction. We perform a series of
- *  measurments and store the values in the an array and print this
- *  out.
- *
- *  @version 2018-10-18
- *  @author Manfred Kerber
+ * The mistake in this class occurs in the method measurementSeries. In the 
+ * original code, once the random integer is 0, the measurement will throw 
+ * an exception but there is no catch statement in measurementSeries. Thus,
+ * the program will stop. In addition, the measurement will only throw an
+ * exception or return 1 or 2. In this case, the if statement in the 
+ * measurement will never execute. Also, the exception should not throw in 
+ * the measurementSeries. Furthermore, the measurement was called for twice
+ * in the measurementSeries, the value for these two would be different.
+ * So, in the modified code, we need to catch the exception once the random
+ * integer is 0 and assign the result with -1. Otherwise, we can directly
+ * assign the return value.
+ * 
  */
 public class Measurement {
 
