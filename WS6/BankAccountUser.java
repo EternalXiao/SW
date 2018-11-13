@@ -3,6 +3,12 @@ public abstract class BankAccountUser implements BankAccountUserInterface{
 	private String password;
 	private boolean loggedIn;
 	
+	public BankAccountUser(String username, String password) {
+		this.username = username;
+		this.password = password;
+		this.loggedIn = loggedIn;
+	}
+	
 	public void login(String password) {
 		this.loggedIn = passwordCorrect(password);
 	}
@@ -11,18 +17,10 @@ public abstract class BankAccountUser implements BankAccountUserInterface{
 		this.loggedIn = false;
 	}
 	
-	public boolean passwordCorrect(String password) {
-		if (password.equals(this.password)) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
+	public abstract boolean passwordCorrect(String password) ;
 	
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	public abstract void setPassword(String password);
+
 	
 	public boolean getLoggedIn() {
 		return this.loggedIn;

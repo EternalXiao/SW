@@ -1,16 +1,13 @@
 
 public class BankAccountStandardUser extends BankAccountUser implements BankAccountStandardUserInterface{
-	private String username;
-	private String password;
-	private boolean loggedIn;
 	private BankAccount bankAccount;
 	private int loginAttempts;
 	private static final int MAXIMAL_LOGIN_ATTEMPTS = 3;
 	
-	public BankAccountStandardUser(String username, String password)
+	public BankAccountStandardUser(String username, String password, boolean loggedIn, BankAccount bankAccount)
 	{
-		this.username = username;
-		this.password = password;
+		super(username, password, loggedIn);
+		this.bankAccount = bankAccount;
 	}
 	
 	public BankAccount getBankAccount() {
