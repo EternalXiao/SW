@@ -25,6 +25,6 @@ public class Statistics {
 		for (Measurable element:elements) {
 			squareDifference += Math.pow(averageValue - element.getValue(), 2);
 		}
-		return Math.sqrt(squareDifference/elements.size());
+		return Math.sqrt(squareDifference/(elements.size()-1));
 	}
 }

@@ -6,20 +6,27 @@ public abstract class BankAccountUser implements BankAccountUserInterface{
 	public BankAccountUser(String username, String password) {
 		this.username = username;
 		this.password = password;
-		this.loggedIn = loggedIn;
-	}
-	
-	public void login(String password) {
-		this.loggedIn = passwordCorrect(password);
-	}
-	
-	public void logout() {
 		this.loggedIn = false;
 	}
 	
-	public abstract boolean passwordCorrect(String password) ;
+	public abstract void login(String password) ;
+
 	
-	public abstract void setPassword(String password);
+	public void logout() {
+		this.setLoggedIn(false);
+	}
+	
+	private String getPassword() {
+		return this.password;
+	}
+	
+	public boolean passwordCorrect(String password) {
+		return this.password.equals(password);
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	
 	public boolean getLoggedIn() {
