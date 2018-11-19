@@ -27,8 +27,8 @@ public class Ex3PublicTests {
 		tony = new BankAccountStandardUser("Tony", "cornUser", bankAccountTony);
 	}
 
-	// john logs in successfully and transfers
-	// some money to mary.
+	// John logs in successfully and transfers
+	// some money to Mary's bank account.
 	@Test
 	public void test1() {
 		john.login("wheatUser");
@@ -40,7 +40,7 @@ public class Ex3PublicTests {
 		assertEquals(expectedLoginAttempts, actualLoginAttempts);
 		assertTrue(john.getLoggedIn());
 
-		// transfer fails because of insufficient funds
+                // transfer fails because of insufficient funds
 		john.transferMoney(bankAccountMary, 150, "wheat");
 
 		double expectedBalance = 100;
@@ -48,7 +48,7 @@ public class Ex3PublicTests {
 
 		assertEquals(expectedBalance, actualBalance, 0.00001);
 
-		// transfer succeeds
+                // transfer succeeds
 		john.transferMoney(bankAccountMary, 10, "wheat");
 		double expectedBalanceJohn = 90;
 		double actualBalanceJohn = john.getBankAccount().getBalance();
@@ -61,7 +61,7 @@ public class Ex3PublicTests {
 	// Mary makes 1 failed login attempt,
 	// logs in using the correct password
 	// and logs out. Then Mary tries to transfer some
-	// money to Tony but forgets the password
+	// money to Tony's bank account but forgets the password
 	@Test
 	public void test2() {
 		mary.login("linseeduser");
@@ -82,8 +82,8 @@ public class Ex3PublicTests {
 		mary.logout();
 		assertFalse(mary.getLoggedIn());
 
-		mary.setPassword("linseeed");
-		mary.transferMoney(bankAccountTony, 123, "linseeed");
+		mary.setPassword("linseeedUser");
+		mary.transferMoney(bankAccountTony, 20, "linseed");
 
 		double expectedBalance = 100;
 		double actualBalance = tony.getBankAccount().getBalance();
@@ -117,7 +117,8 @@ public class Ex3PublicTests {
 
 		// Third attempt is successful
 		tony.login("cornUser");
-
+		expectedLoginAttempts = 0;
+		actualLoginAttempts = tony.getLoginAttempts();
 		assertEquals(expectedLoginAttempts, actualLoginAttempts);
 		assertTrue(tony.getLoggedIn());
 
@@ -125,7 +126,7 @@ public class Ex3PublicTests {
 
 	// John makes 4 failed login attempts and
 	// calls admin. Admin logs in successfully
-	// and then resets John's password and the login attempts to 0.
+	// and then resets John's password and John's login attempts to 0.
 	@Test
 	public void test4() {
 
@@ -150,7 +151,6 @@ public class Ex3PublicTests {
 		// Third failed login attempt
 		john.login("wheatuser");
 		expectedLoginAttempts = 3;
-
 		actualLoginAttempts = john.getLoginAttempts();
 
 		assertEquals(expectedLoginAttempts, actualLoginAttempts);
@@ -242,6 +242,7 @@ public class Ex3PublicTests {
 	// John makes 4 failed login attempts and
 	// calls admin. Admin calls in deputy
 	// to reset John's password.
+    	@Test
 	public void test6() {
 
 		// First failed login attempt
