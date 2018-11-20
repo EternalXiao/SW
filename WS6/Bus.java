@@ -6,7 +6,7 @@ public class Bus extends Vehicle{
 	private double fuelConsumption;
 	
 	/**
-	 * Construction for class Bus
+	 * Constructor for class Bus
 	 * @param passengerNumber maximum number of passengers for bus
 	 * @param maxSpeed maximum speed for bus
 	 * @param fuelConsumption the fuel consumption for bus

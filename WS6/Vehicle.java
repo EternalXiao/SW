@@ -7,7 +7,7 @@ public class Vehicle {
 	private int maxSpeed;
 	
 	/**
-	 * Construction for class Vehicle
+	 * Constructor for class Vehicle
 	 * @param passengerNumber the maximum number of passengers the vehicle can hold
 	 * @param maxSpeed the maximum speed of the vehicle
 	 */

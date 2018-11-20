@@ -9,7 +9,7 @@ public class Invoice implements Measurable{
 	private double amount;
 	
 	/**
-	 * Construction for class Invoice
+	 * Constructor for class Invoice
 	 * @param accountNumber the account number of the payment
 	 * @param sortCode the sort code of the account
 	 * @param amount payment amount

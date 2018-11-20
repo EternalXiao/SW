@@ -9,7 +9,7 @@ public class Patient implements Measurable{
 	private double weight;
 	
 	/**
-	 * Construction for class Patient
+	 * Constructor for class Patient
 	 * @param name the name of patient
 	 * @param age the age of patient
 	 * @param weight the weight of patient
