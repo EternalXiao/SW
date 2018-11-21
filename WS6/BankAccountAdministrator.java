@@ -47,7 +47,7 @@ public class BankAccountAdministrator extends BankAccountUser implements BankAcc
 	 * @param password the new password for the user
 	 */
 	public void resetAccount(BankAccountUser bankAccount, String password) {
-		if (this.getLoggedIn()) {
+		if (this.getLoggedIn()&& this.bankAccountUsers.contains(bankAccount)) {
 			bankAccount.setPassword(password);
 			((BankAccountStandardUser) bankAccount).resetLoginAttempts();
 		}
