@@ -23,4 +23,15 @@ public class ShoppingCart {
 		}
 		else this.getProductList().add(p);
 	}
+	
+	public String toString() {
+		String o = "";
+		double sum = 0;
+		for(Product p : this.getProductList()) {
+			o += String.format("%2d * GBP %6.2f %-10s = GBP %7.2f",p.getQuantity(),p.getPrice(),p.getName(),p.getTotalPrice());
+			o += "\n";
+			sum += p.getTotalPrice();
+		}
+		return o;
+	}
 }
