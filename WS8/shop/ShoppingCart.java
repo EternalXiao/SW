@@ -31,7 +31,7 @@ public class ShoppingCart {
 			o += String.format("%2d * GBP %7.2f %-15s = GBP %7.2f",p.getQuantity(),p.getPrice(),p.getName(),p.getTotalPrice());
 			o += "\n";
 			if(p instanceof MultiBuyProduct) {
-				o += String.format("  (Multiby Discount: GBP %4.2f)", (100.0/(100-((MultiBuyProduct)p).getDiscountPercent())*p.getTotalPrice()-p.getTotalPrice()));
+				o += String.format("  (Multibuy Discount: GBP %4.2f)", (100.0/(100-((MultiBuyProduct)p).getDiscountPercent())*p.getTotalPrice()-p.getTotalPrice()));
 				o += "\n";
 			}
 			sum += p.getTotalPrice();
