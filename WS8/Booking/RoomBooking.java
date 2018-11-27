@@ -46,7 +46,7 @@ public class RoomBooking {
 	}
 	
 	public void cancel(String room, Date date, int hour) {
-		
+		this.bookingRecords.get(date)[hour-9][Arrays.asList(this.getRooms()).indexOf(room)]=null;
 	}
 	
 	public String displayDay(Date date) {
@@ -54,7 +54,6 @@ public class RoomBooking {
 			String[][] str = new String[9][this.getRooms().length];
 			this.bookingRecords.put(date, str);
 		}
-		String splitter ="-------------------+";
 		String empty = "                   |";
 		StringBuilder s = new StringBuilder("");
 		s.append("                                      "+date.toString()+"\n\n");
@@ -63,11 +62,7 @@ public class RoomBooking {
 			s.append("       "+room+"        |");
 		}
 		s.append("\n");
-		s.append("-----+");
-		for(int i=0;i<this.getRooms().length;i++) {
-			s.append(splitter);
-			if(i==this.getRooms().length-1) s.append("\n");
-		}
+		s.append(splitterGenerator());
 		for(int i=0;i<this.bookingRecords.get(date).length;i++) {
 			for(int j=0;j<this.bookingRecords.get(date)[i].length;j++) {
 				if(j==0) s.append(String.format("%5s|", TIMESLOT[i]));
@@ -75,12 +70,20 @@ public class RoomBooking {
 				else s.append(String.format("%19s|", this.bookingRecords.get(date)[i][j]));
 			}
 			s.append("\n");
-			s.append("-----+");
-			for(int m=0;m<this.getRooms().length;m++) {
-				s.append(splitter);
-				if(m==this.getRooms().length-1) s.append("\n");
-			}
+			s.append(splitterGenerator());
 		}
+		return s.toString();
+	}
+	
+	public String splitterGenerator() {
+		String splitter1 ="-----+";
+		String splitter2 ="-------------------+";
+		StringBuilder s = new StringBuilder("");
+		s.append(splitter1);
+		for(int i=0;i<this.getRooms().length;i++) {
+			s.append(splitter2);
+		}
+		s.append("\n");
 		return s.toString();
 	}
 }
