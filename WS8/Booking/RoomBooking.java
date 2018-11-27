@@ -56,21 +56,18 @@ public class RoomBooking {
 		}
 		String empty = "                   |";
 		StringBuilder s = new StringBuilder("");
-		s.append("                                      "+date.toString()+"\n\n");
-		s.append("     |");
+		s.append(stringCentre(date.toString(),6+20*this.getRooms().length)+"\n\n     |");
 		for(String room : this.getRooms()) {
-			s.append("       "+room+"        |");
+			s.append(stringCentre(room,19)+"|");
 		}
-		s.append("\n");
-		s.append(splitterGenerator());
+		s.append("\n"+splitterGenerator());
 		for(int i=0;i<this.bookingRecords.get(date).length;i++) {
 			for(int j=0;j<this.bookingRecords.get(date)[i].length;j++) {
 				if(j==0) s.append(String.format("%5s|", TIMESLOT[i]));
 				if(this.bookingRecords.get(date)[i][j]==null) s.append(empty);
-				else s.append(String.format("%19s|", this.bookingRecords.get(date)[i][j]));
+				else s.append(stringCentre(this.bookingRecords.get(date)[i][j],19)+"|");
 			}
-			s.append("\n");
-			s.append(splitterGenerator());
+			s.append("\n"+splitterGenerator());
 		}
 		return s.toString();
 	}
@@ -85,5 +82,16 @@ public class RoomBooking {
 		}
 		s.append("\n");
 		return s.toString();
+	}
+	
+	public String stringCentre(String s,int len) {
+		int left,right;
+		left = (len-s.length())/2;
+		right = len-s.length()-left;
+		char[] spaceLeft = new char[left];
+		char[] spaceRight = new char[right];
+		Arrays.fill(spaceLeft, ' ');
+		Arrays.fill(spaceRight, ' ');
+		return (new String(spaceLeft))+s+(new String(spaceRight));
 	}
 }
