@@ -12,5 +12,6 @@ public class Main {
 		bookings2018.book("R225", nov22, 14, "Top-up tutorial");
 		//bookings2018.cancel("R222", nov22, 12);
 		System.out.println(bookings2018.displayDay(nov22));
+		//System.out.println(bookings2018.displayDay(new Date(22,"January",2018)));
 	}
 }

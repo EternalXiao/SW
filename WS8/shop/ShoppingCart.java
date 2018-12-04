@@ -1,21 +1,44 @@
+/**
+ * ShoppingCart is a class characterised by a field variable
+ * <pre>
+ *  productList, a list of products
+ * </pre>
+ */
+
 package shop;
 
 import java.util.ArrayList;
 
 public class ShoppingCart {
-	private ArrayList<Product> productList = new ArrayList<>();
+	private ArrayList<Product> productList;
 
+	/**
+	 * Constructor for class ShoppingCart
+	 */
 	public ShoppingCart() {
+		productList = new ArrayList<>();
 	}
 	
+	/**
+	 * Getter method for product list
+	 * @return a list of products in the shoppingcart
+	 */
 	public ArrayList<Product> getProductList() {
 		return productList;
 	}
 
+	/**
+	 * Setter method for product list
+	 * @param productList new product list to be set to shoppingcart
+	 */
 	public void setProductList(ArrayList<Product> productList) {
 		this.productList = productList;
 	}
 
+	/**
+	 * Method to add a new product to the shoppingcart
+	 * @param p the new product to add
+	 */
 	public void add(Product p) {
 		if(this.getProductList().contains(p)) {
 			Product p1=this.getProductList().get(this.getProductList().indexOf(p));
@@ -24,6 +47,10 @@ public class ShoppingCart {
 		else this.getProductList().add(p);
 	}
 	
+	/**
+	 * toString method for printing
+	 * @return the shoppingcart represented as a string
+	 */
 	public String toString() {
 		String o = "";
 		double sum = 0;
