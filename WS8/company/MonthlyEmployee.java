@@ -74,6 +74,6 @@ public class MonthlyEmployee extends Employee{
     }
     
     public void increaseSalary(double rate) {
-    	this.setMonthlySalary(this.getMonthlySalary()*(1+rate));
+    	this.setMonthlySalary(this.getMonthlySalary()*(1+rate/100));
     }
 }

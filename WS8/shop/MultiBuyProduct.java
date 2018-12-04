@@ -65,7 +65,7 @@ public class MultiBuyProduct extends Product{
 	 */
 	public double getTotalPrice() {
 		if(this.getQuantity()>=this.getMinDiscountedQuantity()) 
-			return super.getTotalPrice()*(1-this.getDiscountPercent()/100.0);
+			return Math.round(super.getTotalPrice()*(1-this.getDiscountPercent()/100.0)*100)/100.0;
 		else return super.getTotalPrice();
 	}
 }

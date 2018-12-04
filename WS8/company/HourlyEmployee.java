@@ -100,7 +100,11 @@ public class HourlyEmployee extends Employee {
         return getHourlySalary() * getWorkedHoursLastMonth();
     }
     
+    /**
+     * Method to increase the salary of HourlyEmployee with given rate
+     * @param rate the increase rate for salary
+     */
     public void increaseSalary(double rate) {
-    	this.setHourlySalary(this.getHourlySalary()*(1+rate));
+    	this.setHourlySalary(this.getHourlySalary()*(1+rate/100));
     }
 }

@@ -20,8 +20,12 @@ public class Date {
     private int day;
     private String month;
     private int year;
+    
+    public int getYear() {
+		return year;
+	}
 
-    /**
+	/**
      *  @param day The input of a day such as 21 as an int.
      *  @param month The input of a month such as "October" as a String.
      *  @param year The input of a year such as 2016 as an int.

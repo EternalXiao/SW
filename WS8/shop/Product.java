@@ -80,7 +80,7 @@ public class Product {
 	 * @return the total price for this product
 	 */
 	public double getTotalPrice() {
-		return this.getPrice()*this.getQuantity();
+		return Math.round(this.getPrice()*this.getQuantity()*100)/100.0;
 	}
 	
 	/**
