@@ -3,13 +3,19 @@ import java.io.*;
 import java.util.Scanner;
 
 /**
- *  The class creates an image in form of a greyscale image which is
- *  read in from a file. It contains a method that is supposed to
- *  rotate the image and write it out again. However, it does not work
- *  properly, the images written out do not show anything meaningful.
- *
- *  @version 2018-11-19
- *  @author Manfred Kerber
+ * The mistake of this class is because the height and width was swapped but the 
+ * output sequence of the pixel is in the previous way. For example,if the previous
+ * pixel matrix is [1,2,3]
+ * 				   [4,5,6]
+ * the output of the original code is [1,2]
+ * 									  [3,4]
+ * 									  [5,6]
+ * which is obviously incorrect. The desire pixel matrix after rotation should be
+ * 									  [4,1]
+ * 									  [5,2]
+ * 									  [6,3]
+ * As a result, for the outer loop, we should start from zero to width-1 and for 
+ * the inner loop, starting from height-1 to zero. 
  */
 public class PGMImage{
     private int width;

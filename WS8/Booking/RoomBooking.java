@@ -117,7 +117,7 @@ public class RoomBooking {
 	 * @param hour the previous booking hour
 	 */
 	public void cancel(String room, Date date, int hour) {
-		if (this.getBookingRecords().containsKey(date)) {
+		if (this.getBookingRecords().containsKey(date) && Arrays.asList(rooms).contains(room) && hour <=17 && hour >=9) {
 			this.bookingRecords.get(date)[hour - 9][Arrays.asList(this.getRooms()).indexOf(room)] = null;
 		}
 	}
