@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.beans.property.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml">
+	<VBox  spacing="20" alignment="center">
+		<TextField fx:id="URLText">
+			<font>
+				<Font name ="calibri" size="20"/>
+			</font>
+		</TextField>
+		<TextField fx:id="nameText">
+			<font>
+				<Font name ="calibri" size="20"/>
+			</font>
+		</TextField>
+		<HBox spacing="50" alignment="center">
+			<Button fx:id="downloadButton" Text="download" onAction="#downloadApplication"/>
+			<Button fx:id="exitButton" Text="exit" onAction="#exitApplication"/>
+		</HBox>
+	</VBox>
+</fx:root>
+
