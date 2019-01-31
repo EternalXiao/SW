@@ -53,15 +53,7 @@ public class Worksheet2 implements Worksheet2Interface {
 	// Exercise 5
 
 	static boolean isSearchTree(Tree<Integer> a) {
-		if (a.getLeft().isEmpty() && a.getRight().isEmpty())
-			return true;
-		else if (a.getLeft().isEmpty())
-			return a.getValue() < a.getRight().getValue() & isSearchTree(a.getRight());
-		else if (a.getRight().isEmpty())
-			return a.getValue() > a.getLeft().getValue() & isSearchTree(a.getLeft());
-		else
-			return a.getValue() > a.getLeft().getValue() & a.getValue() < a.getRight().getValue()
-					& isSearchTree(a.getLeft()) & isSearchTree(a.getRight());
+		return sorted(inorder(a));
 	}
 
 	// Exercise 6
@@ -79,7 +71,9 @@ public class Worksheet2 implements Worksheet2Interface {
 	// Exercise 7
 
 	static int max(Tree<Integer> a) {
-		if (a.getRight().isEmpty())
+		if (a.isEmpty())
+			throw new IllegalArgumentException();
+		else if (a.getRight().isEmpty())
 			return a.getValue();
 		else
 			return max(a.getRight());
@@ -88,14 +82,19 @@ public class Worksheet2 implements Worksheet2Interface {
 	// Exercise 8
 
 	static Tree<Integer> delete(Tree<Integer> a, int x) {
-		if (a.getLeft().isEmpty() & a.getRight().isEmpty())
+		if (a.isEmpty())
 			return new Tree<>();
-		else if (a.getLeft().isEmpty())
-			return new Tree<>(a.getRight().getValue(), a.getRight().getLeft(), a.getRight().getRight());
-		else if (a.getRight().isEmpty())
-			return new Tree<>(a.getLeft().getValue(), a.getLeft().getLeft(), a.getLeft().getRight());
-		else
-			return new Tree<>(max(a.getLeft()), delete(a.getLeft(), max(a.getLeft())), a.getRight());
+		else if (a.getValue() == x) {
+			if (a.getLeft().isEmpty() & a.getRight().isEmpty())
+				return new Tree<>();
+			else if (a.getLeft().isEmpty())
+				return new Tree<>(a.getRight().getValue(), a.getRight().getLeft(), a.getRight().getRight());
+			else if (a.getRight().isEmpty())
+				return new Tree<>(a.getLeft().getValue(), a.getLeft().getLeft(), a.getLeft().getRight());
+			else
+				return new Tree<>(max(a.getLeft()), delete(a.getLeft(), max(a.getLeft())), a.getRight());
+		} else
+			return new Tree<>(a.getValue(), delete(a.getLeft(), x), delete(a.getRight(), x));
 	}
 
 	// Exercise 9
@@ -182,16 +181,34 @@ public class Worksheet2 implements Worksheet2Interface {
 			return new Tree<>(a.getValue(), heightBalance(a.getLeft()), heightBalance(a.getRight()));
 	}
 
+	public static List<Integer> inorder(Tree<Integer> t) {
+		if (t.isEmpty())
+			return new List<>();
+		else {
+			return append(inorder(t.getLeft()), new List<>(t.getValue(), inorder(t.getRight())));
+		}
+	}
+
+	static boolean sorted(List<Integer> a) {
+		if (a.getTail().isEmpty())
+			return true;
+		else
+			return a.getHead() <= a.getTail().getHead() & sorted(a.getTail());
+	}
+
 	public static void main(String[] args) {
 		Tree<Integer> t = new Tree<>(5, new Tree<>(3, new Tree<>(1), new Tree<>(4)),
 				new Tree<>(8, new Tree<>(6), new Tree<>(9)));
-		Tree<Integer> g = new Tree<>(1, new Tree<>(2, new Tree<>(3), new Tree<>(4)),
-				new Tree<>(5, new Tree<>(6), new Tree<>(7)));
-		Tree<Integer> f = new Tree<>(1, new Tree<>(2, new Tree<>(3), new Tree<>(4)), new Tree<>());
+		Tree<Integer> g = new Tree<>(29, new Tree<>(15, new Tree<>(3), new Tree<>(23, new Tree<>(22), new Tree<>())),
+				new Tree<>(73, new Tree<>(59, new Tree<>(46), new Tree<>(65)),
+						new Tree<>(83, new Tree<>(), new Tree<>(91))));
+		Tree<Integer> f = new Tree<>(30, new Tree<>(20, new Tree<>(15), new Tree<>(25, new Tree<>(22), new Tree<>(31))),
+				new Tree<>(40));
 		Tree<Integer> ins = new Tree<>(100, new Tree<>(47, new Tree<>(45), new Tree<>(50)), new Tree<>(200));
 		Tree<Integer> t1;
 		t1 = insertHB(ins, 51);
-		System.out.println(t1);
+		System.out.println(g);
+		System.out.println(delete(g,73));
 		// printDescending(t);
 	}
 }
