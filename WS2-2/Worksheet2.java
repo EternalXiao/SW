@@ -6,7 +6,12 @@
 public class Worksheet2 implements Worksheet2Interface {
 
 	// Exercise 1
-
+	/**
+	 * This method negate all the elements as the return tree
+	 * 
+	 * @param t an input tree
+	 * @return element negated tree
+	 */
 	static Tree<Integer> negateAll(Tree<Integer> t) {
 		if (t.isEmpty())
 			return new Tree<>();
@@ -15,7 +20,12 @@ public class Worksheet2 implements Worksheet2Interface {
 	}
 
 	// Exercise 2
-
+	/**
+	 * This method check whether all the elements of a given tree are positive
+	 * 
+	 * @param a an input tree
+	 * @return true if all the elements are positive, else false
+	 */
 	static boolean allPositive(Tree<Integer> a) {
 		if (a.isEmpty())
 			throw new IllegalArgumentException();
@@ -30,7 +40,14 @@ public class Worksheet2 implements Worksheet2Interface {
 	}
 
 	// Exercise 3
-
+	/**
+	 * This method search the level of a given integer. If found, return the level
+	 * in the tree, else return 0.
+	 * 
+	 * @param a an input tree
+	 * @param x the integer to search
+	 * @return the level of the given integer if found, else 0.
+	 */
 	static int level(Tree<Integer> a, int x) {
 		if (a.isEmpty())
 			return 0;
@@ -42,7 +59,12 @@ public class Worksheet2 implements Worksheet2Interface {
 	}
 
 	// Exercise 4
-
+	/**
+	 * This method traverse a tree in postorder
+	 * 
+	 * @param a the tree to traverse
+	 * @return the postorder tree represented as a list
+	 */
 	static <E> List<E> postorder(Tree<E> a) {
 		if (a.isEmpty())
 			return new List<>();
@@ -51,13 +73,25 @@ public class Worksheet2 implements Worksheet2Interface {
 	}
 
 	// Exercise 5
-
+	/**
+	 * This method checks whether a given tree is a binary search tree
+	 * 
+	 * @param a the input tree
+	 * @return true if it is a binary search tree, else false
+	 */
 	static boolean isSearchTree(Tree<Integer> a) {
-		return sorted(inorder(a));
+		if (a.isEmpty())
+			throw new IllegalArgumentException();
+		else
+			return sorted(inorder(a));
 	}
 
 	// Exercise 6
-
+	/**
+	 * This method print the elements of a binary search tree in descending order
+	 * 
+	 * @param a the input tree
+	 */
 	static void printDescending(Tree<Integer> a) {
 		if (a.isEmpty())
 			return;
@@ -69,7 +103,12 @@ public class Worksheet2 implements Worksheet2Interface {
 	}
 
 	// Exercise 7
-
+	/**
+	 * This method finds the maximum element in a binary search tree
+	 * 
+	 * @param a the input tree
+	 * @return the maximum element
+	 */
 	static int max(Tree<Integer> a) {
 		if (a.isEmpty())
 			throw new IllegalArgumentException();
@@ -80,7 +119,14 @@ public class Worksheet2 implements Worksheet2Interface {
 	}
 
 	// Exercise 8
-
+	/**
+	 * This method deletes a given integer in the binary search tree and returns a
+	 * binary search tree after deletion
+	 * 
+	 * @param a the input tree
+	 * @param x an integer to be deleted
+	 * @return the tree after deletion
+	 */
 	static Tree<Integer> delete(Tree<Integer> a, int x) {
 		if (a.isEmpty())
 			return new Tree<>();
@@ -93,11 +139,20 @@ public class Worksheet2 implements Worksheet2Interface {
 				return new Tree<>(a.getLeft().getValue(), a.getLeft().getLeft(), a.getLeft().getRight());
 			else
 				return new Tree<>(max(a.getLeft()), delete(a.getLeft(), max(a.getLeft())), a.getRight());
-		} else
-			return new Tree<>(a.getValue(), delete(a.getLeft(), x), delete(a.getRight(), x));
+		} else if(a.getValue()>x)
+			return new Tree<>(a.getValue(), delete(a.getLeft(), x), a.getRight());
+		else {
+			return new Tree<>(a.getValue(),a.getLeft(),delete(a.getRight(),x));
+		}
 	}
 
 	// Exercise 9
+	/**
+	 * This method checks whether a given binary search tree is balanced
+	 * 
+	 * @param a the input tree
+	 * @return true if the tree is balanced, else false
+	 */
 	static <E> boolean isHeightBalanced(Tree<E> a) {
 		if (a.isEmpty())
 			return true;
@@ -108,7 +163,14 @@ public class Worksheet2 implements Worksheet2Interface {
 	}
 
 	// Exercise 10
-
+	/**
+	 * This method inserts an element into a given AVL tree and returns an AVL tree
+	 * after insertion
+	 * 
+	 * @param a the element to insert
+	 * @param x the input tree
+	 * @return the AVL tree after insertion
+	 */
 	static Tree<Integer> insertHB(Tree<Integer> a, int x) {
 		Tree<Integer> t = insert(x, a);
 		if (isHeightBalanced(t))
@@ -117,6 +179,14 @@ public class Worksheet2 implements Worksheet2Interface {
 			return heightBalance(t);
 	}
 
+	/**
+	 * This method deletes an element of a given AVL tree and returns an AVL tree
+	 * after deletion
+	 * 
+	 * @param a the element to delete
+	 * @param x the input tree
+	 * @return the AVL tree after deletion
+	 */
 	static Tree<Integer> deleteHB(Tree<Integer> a, int x) {
 		Tree<Integer> t = delete(a, x);
 		if (isHeightBalanced(t))
@@ -125,6 +195,13 @@ public class Worksheet2 implements Worksheet2Interface {
 			return heightBalance(t);
 	}
 
+	/**
+	 * This method concatenates a list b to the end of list a
+	 * 
+	 * @param a the first list
+	 * @param b the second list
+	 * @return the list after concatenation
+	 */
 	public static <E> List<E> append(List<E> a, List<E> b) {
 		if (a.isEmpty()) {
 			return b;
@@ -133,6 +210,13 @@ public class Worksheet2 implements Worksheet2Interface {
 		}
 	}
 
+	/**
+	 * This method adds an element to the end of a list
+	 * 
+	 * @param a the element to add
+	 * @param x the origin list
+	 * @return the extended list
+	 */
 	public static <E> List<E> addToEnd(List<E> a, E x) {
 		if (a.isEmpty()) {
 			return new List<>(x, new List<>());
@@ -141,6 +225,13 @@ public class Worksheet2 implements Worksheet2Interface {
 		}
 	}
 
+	/**
+	 * This method inserts an element into a binary search tree
+	 * 
+	 * @param x the element to insert
+	 * @param a the binary search tree
+	 * @return the binary search tree after insertion
+	 */
 	public static Tree<Integer> insert(int x, Tree<Integer> a) {
 
 		if (a.isEmpty())
@@ -154,6 +245,13 @@ public class Worksheet2 implements Worksheet2Interface {
 
 	}
 
+	/**
+	 * This method performs the height balance algorithm to an unbalanced binary
+	 * search tree
+	 * 
+	 * @param a the unbalanced binary search tree
+	 * @return the height balanced binary search tree (AVL)
+	 */
 	public static Tree<Integer> heightBalance(Tree<Integer> a) {
 		if (a.isEmpty())
 			return new Tree<>();
@@ -181,6 +279,12 @@ public class Worksheet2 implements Worksheet2Interface {
 			return new Tree<>(a.getValue(), heightBalance(a.getLeft()), heightBalance(a.getRight()));
 	}
 
+	/**
+	 * This method traverses a binary tree in inorder
+	 * 
+	 * @param t the binary tree to traverse
+	 * @return the inorder traversed tree represented as a list
+	 */
 	public static List<Integer> inorder(Tree<Integer> t) {
 		if (t.isEmpty())
 			return new List<>();
@@ -189,6 +293,12 @@ public class Worksheet2 implements Worksheet2Interface {
 		}
 	}
 
+	/**
+	 * This method checks whether a list is in ascending order (sorted)
+	 * 
+	 * @param a the input list
+	 * @return true if sorted, else false
+	 */
 	static boolean sorted(List<Integer> a) {
 		if (a.getTail().isEmpty())
 			return true;
@@ -208,7 +318,7 @@ public class Worksheet2 implements Worksheet2Interface {
 		Tree<Integer> t1;
 		t1 = insertHB(ins, 51);
 		System.out.println(g);
-		System.out.println(delete(g,73));
+		System.out.println(delete(g, 73));
 		// printDescending(t);
 	}
 }
