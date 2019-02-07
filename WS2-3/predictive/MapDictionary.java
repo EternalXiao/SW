@@ -11,12 +11,14 @@ public class MapDictionary implements Dictionary{
 			Scanner in = new Scanner(new File(path));
 			String word;
 			while (in.hasNextLine()) {
-				word = in.nextLine();
+				word = in.nextLine().toLowerCase();
+				if(!PredictivePrototype.isValidWord(word))
+					continue;
 				//System.out.println(word);
 				if (!dict.containsKey(wordToSignature(word))) {
 					dict.put(wordToSignature(word), new HashSet<String>());
 				}
-				dict.get(wordToSignature(word)).add(word.toLowerCase());
+				dict.get(wordToSignature(word)).add(word);
 			}
 			in.close();
 		} catch (FileNotFoundException e) {

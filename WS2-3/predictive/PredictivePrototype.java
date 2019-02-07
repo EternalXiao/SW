@@ -35,9 +35,8 @@ public class PredictivePrototype {
 
 	public static Set<String> signatureToWords(String signature) {
 		Map<String, Set<String>> dict = new HashMap<>();
-		Scanner in;
 		try {
-			in = new Scanner(new File("words"));
+			Scanner in = new Scanner(new File("words"));
 			String word;
 			while (in.hasNextLine()) {
 				word = in.nextLine();

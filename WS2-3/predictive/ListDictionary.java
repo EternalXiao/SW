@@ -2,7 +2,7 @@ package predictive;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
-public class ListDictionary {
+public class ListDictionary implements Dictionary{
 	private List<WordSig> dict = new ArrayList<>();
 	public ListDictionary(String path) {
 		try {
@@ -10,6 +10,8 @@ public class ListDictionary {
 			String word;
 			while(in.hasNextLine()) {
 				word = in.nextLine().toLowerCase();
+				if(!PredictivePrototype.isValidWord(word))
+					continue;
 				WordSig ws = new WordSig(word,PredictivePrototype.wordToSignature(word));
 				if(!dict.contains(ws))
 					dict.add(ws);

@@ -14,9 +14,11 @@ public class WordSig implements Comparable<WordSig>{
 		return this.signature;
 	}
 	public int compareTo(WordSig ws) {
-		if(this.signature.compareTo(ws.signature)==0) return 0;
-		else if(this.signature.compareTo(ws.signature)<0) return -1;
-		else return 1;
+		int sig1 = Integer.parseInt(this.getSig());
+		int sig2 = Integer.parseInt(ws.getSig());
+		if(sig1>sig2) return 1;
+		else if(sig1==sig2) return 0;
+		else return -1;
 	}
 	@Override
 	public boolean equals(Object o) {
