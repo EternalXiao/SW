@@ -1,5 +1,5 @@
 package predictive;
-
+import java.math.BigInteger;
 public class WordSig implements Comparable<WordSig>{
 	private String words;
 	private String signature;
@@ -14,10 +14,12 @@ public class WordSig implements Comparable<WordSig>{
 		return this.signature;
 	}
 	public int compareTo(WordSig ws) {
-		int sig1 = Integer.parseInt(this.getSig());
-		int sig2 = Integer.parseInt(ws.getSig());
-		if(sig1>sig2) return 1;
-		else if(sig1==sig2) return 0;
+		BigInteger sig1 = new BigInteger(this.getSig());
+		BigInteger sig2 = new BigInteger(ws.getSig());
+		//long sig1 = Long.parseLong(this.getSig());
+		//long sig2 = Long.parseLong(ws.getSig());
+		if(sig1.compareTo(sig2)>0) return 1;
+		else if(sig1.compareTo(sig2)==0) return 0;
 		else return -1;
 	}
 	@Override

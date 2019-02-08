@@ -5,7 +5,13 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class PredictivePrototype {
-
+	
+	/**
+	 * This method is to convert a given word to its corresponding
+	 * signature
+	 * @param word the given word
+	 * @return the signature of the given word
+	 */
 	public static String wordToSignature(String word) {
 		StringBuffer Sig = new StringBuffer();
 		for (char c : word.toLowerCase().toCharArray()) {
@@ -34,7 +40,7 @@ public class PredictivePrototype {
 	}
 
 	public static Set<String> signatureToWords(String signature) {
-		Map<String, Set<String>> dict = new HashMap<>();
+		Set<String> res = new HashSet<>();
 		try {
 			Scanner in = new Scanner(new File("words"));
 			String word;
@@ -42,18 +48,22 @@ public class PredictivePrototype {
 				word = in.nextLine().toLowerCase().trim();
 				if(!PredictivePrototype.isValidWord(word))
 					continue;
-				if (!dict.containsKey(wordToSignature(word))) {
-					dict.put(wordToSignature(word), new HashSet<String>());
-				}
-				dict.get(wordToSignature(word)).add(word);
+				if(wordToSignature(word).equals(signature))
+					res.add(word);
 			}
 			in.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		return dict.get(signature);
+		return res;
 	}
 	
+	/**
+	 * This method check whether a given word is a valid
+	 * word (not containing non-alphabetic characters)
+	 * @param word the given word
+	 * @return true if the word is valid, else false
+	 */
 	public static boolean isValidWord(String word) {
 		for(char c:word.toCharArray()) {
 			if(!Character.isAlphabetic(c))
@@ -63,6 +73,9 @@ public class PredictivePrototype {
 	}
 
 	public static void main(String[] args) {
+		long st;
+		st=System.currentTimeMillis();
 		System.out.println(signatureToWords("4663"));
+		System.out.println(System.currentTimeMillis()-st);
 	}
 }
