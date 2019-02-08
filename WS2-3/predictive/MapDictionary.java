@@ -11,10 +11,9 @@ public class MapDictionary implements Dictionary{
 			Scanner in = new Scanner(new File(path));
 			String word;
 			while (in.hasNextLine()) {
-				word = in.nextLine().toLowerCase();
+				word = in.nextLine().toLowerCase().trim();
 				if(!PredictivePrototype.isValidWord(word))
 					continue;
-				//System.out.println(word);
 				if (!dict.containsKey(wordToSignature(word))) {
 					dict.put(wordToSignature(word), new HashSet<String>());
 				}

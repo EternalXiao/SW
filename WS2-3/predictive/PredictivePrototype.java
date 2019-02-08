@@ -39,12 +39,13 @@ public class PredictivePrototype {
 			Scanner in = new Scanner(new File("words"));
 			String word;
 			while (in.hasNextLine()) {
-				word = in.nextLine();
-				//System.out.println(word);
+				word = in.nextLine().toLowerCase().trim();
+				if(!PredictivePrototype.isValidWord(word))
+					continue;
 				if (!dict.containsKey(wordToSignature(word))) {
 					dict.put(wordToSignature(word), new HashSet<String>());
 				}
-				dict.get(wordToSignature(word)).add(word.toLowerCase());
+				dict.get(wordToSignature(word)).add(word);
 			}
 			in.close();
 		} catch (FileNotFoundException e) {

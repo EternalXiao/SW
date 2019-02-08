@@ -9,13 +9,12 @@ public class ListDictionary implements Dictionary{
 			Scanner in = new Scanner(new File(path));
 			String word;
 			while(in.hasNextLine()) {
-				word = in.nextLine().toLowerCase();
+				word = in.nextLine().toLowerCase().trim();
 				if(!PredictivePrototype.isValidWord(word))
 					continue;
 				WordSig ws = new WordSig(word,PredictivePrototype.wordToSignature(word));
 				if(!dict.contains(ws))
 					dict.add(ws);
-				//System.out.println(word);
 			}
 			System.out.println("Dict loaded");
 			Collections.sort(dict);

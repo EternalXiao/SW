@@ -18,7 +18,6 @@ public class TreeDictionary implements Dictionary{
 				word = in.nextLine().toLowerCase();
 				if(!PredictivePrototype.isValidWord(word))
 					continue;
-				//System.out.println(word);
 				String sig = PredictivePrototype.wordToSignature(word);
 				TreeNode currentNode = this.getRoot();
 				for(char c:sig.toCharArray()) {
@@ -32,7 +31,6 @@ public class TreeDictionary implements Dictionary{
 			}
 			in.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -42,13 +40,31 @@ public class TreeDictionary implements Dictionary{
 
 	@Override
 	public Set<String> signatureToWords(String signature) {
+		if(signature.length()==0)
+			throw new IllegalArgumentException();
 		Set<String> res = new HashSet<>();
-		this.getPredictiveWords();
-		return null;
+		TreeNode cur = this.getRoot();
+		for(char c:signature.toCharArray()) {
+			if(cur.getChildren()[Character.getNumericValue(c)-2]==null)
+				return res;
+			else
+				cur = cur.getChildren()[Character.getNumericValue(c)-2];
+		}
+		this.getPredictiveWords(cur,res);
+		return res;
 	}
 	
-	public void getPredictiveWords(TreeNode cur,Set<String> res,String sig) {
-		
+	public void getPredictiveWords(TreeNode cur,Set<String> res) {
+		if(cur==null)
+			return;
+		res.addAll(cur.getWords());
+		for(int i=0;i<8;i++) {
+			this.getPredictiveWords(cur.getChildren()[i], res);
+		}
 	}
 	
+	public static void main(String[] args) {
+		TreeDictionary TD = new TreeDictionary("words");
+		System.out.println(TD.signatureToWords("2"));
+	}
 }
