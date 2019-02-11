@@ -38,7 +38,14 @@ public class PredictivePrototype {
 		}
 		return Sig.toString();
 	}
-
+	
+	/**
+	 * This method takes a signature and checks the words in the
+	 * dictionary that has this signature and return all of them as
+	 * a set
+	 * @param signature the given signature
+	 * @return a set of words with the signature
+	 */
 	public static Set<String> signatureToWords(String signature) {
 		Set<String> res = new HashSet<>();
 		try {
