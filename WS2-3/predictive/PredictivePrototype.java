@@ -13,6 +13,9 @@ public class PredictivePrototype {
 	 * @return the signature of the given word
 	 */
 	public static String wordToSignature(String word) {
+		// Here I am using StringBuffer to store the signature of a word character by character rather than
+		// string for the reason that string is immutable and the StringBuffer is mutable. So if we use string,
+		// every time we modify it, it will create a new object which is very inefficient and memory waste.
 		StringBuffer Sig = new StringBuffer();
 		for (char c : word.toLowerCase().toCharArray()) {
 			if (Character.isAlphabetic(c)) {
@@ -47,6 +50,9 @@ public class PredictivePrototype {
 	 * @return a set of words with the signature
 	 */
 	public static Set<String> signatureToWords(String signature) {
+		// This implement is inefficient due to the fact that every time we want to
+		// convert a signature into a set of words, this method will scan the whole
+		// dictionary to find the desired words.
 		Set<String> res = new HashSet<>();
 		try {
 			Scanner in = new Scanner(new File("words"));
