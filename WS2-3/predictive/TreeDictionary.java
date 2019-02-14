@@ -79,25 +79,8 @@ public class TreeDictionary implements Dictionary{
 			else
 				cur = cur.getChildren()[Character.getNumericValue(c)-2];
 		}
-//		res.addAll(this.getPredictiveWords(cur));
 		return cur.getWords();
 	}
-//	/**
-//	 * This method retrieves the predictive words in the children
-//	 * nodes of current node recursively
-//	 * @param cur the current node
-//	 * @return a set of predictive words
-//	 */
-//	public Set<String> getPredictiveWords(TreeNode cur) {
-//		Set<String> words = new HashSet<>();
-//		if(cur==null)
-//			return words;
-//		words.addAll(cur.getWords());
-//		for(int i=0;i<8;i++) {
-//			words.addAll(this.getPredictiveWords(cur.getChildren()[i]));
-//		}
-//		return words;
-//	}
 	
 	public static void main(String[] args) {
 		TreeDictionary TD = new TreeDictionary("words");

@@ -16,8 +16,6 @@ public class WordSig implements Comparable<WordSig>{
 	public int compareTo(WordSig ws) {
 		BigInteger sig1 = new BigInteger(this.getSig());
 		BigInteger sig2 = new BigInteger(ws.getSig());
-		//long sig1 = Long.parseLong(this.getSig());
-		//long sig2 = Long.parseLong(ws.getSig());
 		if(sig1.compareTo(sig2)>0) return 1;
 		else if(sig1.compareTo(sig2)==0) return 0;
 		else return -1;
