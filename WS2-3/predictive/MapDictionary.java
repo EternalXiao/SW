@@ -1,3 +1,10 @@
+/**
+ * This class implement the dictionary with an even more 
+ * efficient approach
+ * MapDictionary uses HashMap to store the dictionary. The
+ * keys are the signatures and values are sets of words sharing
+ * the same signature
+ */
 package predictive;
 
 import java.io.File;

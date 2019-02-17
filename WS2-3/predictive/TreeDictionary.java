@@ -1,3 +1,8 @@
+/**
+ * This class implement the dictionary with a tree structure.
+ * This allows the words or part of the words that matches partial
+ * signatures (prefix-matching)
+ */
 package predictive;
 
 import java.io.File;
@@ -84,7 +89,7 @@ public class TreeDictionary implements Dictionary{
 	
 	public static void main(String[] args) {
 		TreeDictionary TD = new TreeDictionary("words");
-		for(String word:TD.signatureToWords("4663")) {
+		for(String word:TD.signatureToWords("56582")) {
 			System.out.println(word);
 		}
 	}

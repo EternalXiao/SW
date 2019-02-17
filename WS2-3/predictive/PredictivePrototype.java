@@ -1,3 +1,7 @@
+/**
+ * This class is the prototype of the predictive text problem, declaring
+ * three static method.
+ */
 package predictive;
 
 import java.io.File;
@@ -83,12 +87,5 @@ public class PredictivePrototype {
 				return false;
 		}
 		return true;
-	}
-
-	public static void main(String[] args) {
-		long st;
-		st=System.currentTimeMillis();
-		System.out.println(signatureToWords("4663"));
-		System.out.println(System.currentTimeMillis()-st);
 	}
 }
