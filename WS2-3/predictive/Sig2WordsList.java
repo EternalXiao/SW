@@ -9,6 +9,15 @@
  *         10             2566328          222 223 224 225 226 227 228 229 232 233 
  *         20             4283645          222 223 224 225 226 227 228 229 232 233 234 235 236 237 238 239 242 243 244 245
  *         30             4012274          222 223 224 225 226 227 228 229 232 233 234 235 236 237 238 239 242 243 244 245 246 247 248 249 252 253 254 255 256 257
+ * Comparison to prototype:
+ * number of strings      time (ns)         
+ *         1              620953240          
+ *         5              2594002897      
+ *         10             4376045252       
+ *         20             8582072818       
+ *         30             12825337387
+ * 
+ * The time difference between prototype and ListDictionary becomes larger and larger as the inputs grows
  */
 package predictive;
 
